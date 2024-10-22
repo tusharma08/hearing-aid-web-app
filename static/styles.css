@@ -5,6 +5,10 @@ body {
     font-size: 30px;
     color: white;
     background-color: #17252a;
+    background-image: url('/static/IMG_20241022_223423_773.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
 
 .control-panel {
@@ -20,7 +24,7 @@ body {
 
 label, input, button {
     border-radius: 1px solid blue;
-    padding 10px;
+    padding: 10px;;
     border-radius: 10px;
     font-weight: 500;
     display: block;
