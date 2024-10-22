@@ -68,5 +68,12 @@ def start_audio(data):
 def index():
     return render_template('index.html')
 
+# if __name__ == '__main__':
+#     socketio.run(app, debug=True)
+
+import os
+
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    # Heroku assigns a dynamic port via environment variable 'PORT', default to 5000 if not set
+    port = int(os.environ.get('PORT', 5000))
+    socketio.run(app, host='0.0.0.0', port=port, debug=True)
