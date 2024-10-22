@@ -52,28 +52,42 @@ def start_audio(data):
     noise_reduction_level = data['noiseReductionLevel']
 
     def stream_audio():
-        initialize_pyaudio()
+        try:
+            initialize_pyaudio()
 
-        while True:
-            audio_data = stream_in.read(CHUNK)
-            audio_array = np.frombuffer(audio_data, dtype=np.int16)
+            while True:
+                # Read audio data from the microphone
+                audio_data = stream_in.read(CHUNK)
+                
+                # Convert audio data to numpy array
+                audio_array = np.frombuffer(audio_data, dtype=np.int16)
+                
+                # Amplify and process the audio signal with noise reduction
+                processed_data = process_audio_data(audio_array, amplification_factor, noise_reduction_level)
 
-            processed_data = process_audio_data(audio_array, amplification_factor, noise_reduction_level)
+                # Emit processed audio data to the frontend
+                socketio.emit('audio_data', {'data': processed_data.tolist()})
 
-            socketio.emit('audio_data', {'data': processed_data.tolist()})
-    
+                # Output the processed audio to the speaker
+                stream_out.write(processed_data.tobytes())
+
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+            cleanup()
+
+    # Start the audio processing in a new thread
     Thread(target=stream_audio).start()
+
+@socketio.on('stop_audio')
+def stop_audio():
+    cleanup()
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# if __name__ == '__main__':
-#     socketio.run(app, debug=True)
-
 import os
 
 if __name__ == '__main__':
-    # Heroku assigns a dynamic port via environment variable 'PORT', default to 5000 if not set
     port = int(os.environ.get('PORT', 5000))
     socketio.run(app, host='0.0.0.0', port=port, debug=True)

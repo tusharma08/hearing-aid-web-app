@@ -5,10 +5,10 @@ body {
     font-size: 30px;
     color: white;
     background-color: #17252a;
-    background-image: url('/static/IMG_20241022_223423_773.png'); 
+    /* background-image: url('/static/IMG_20241022_223423_773.png'); 
     background-size: cover; 
     background-position: center; 
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;  */
 }
 
 .control-panel {
