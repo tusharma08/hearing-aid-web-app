@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+    background-color: #17252a;
+}
+
+.control-panel {
+    display: inline-block;
+    margin-top: 20px;
+    border: 2px solid black;
+    padding: 50px 100px;
+    font-size: 20px;
+    border-radius: 20px;
+    color: black;
+    background-color: #def2f1;
+}
+
+label, input, button {
+    border-radius: 1px solid blue;
+    padding 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    display: block;
+    margin: 10px 0;
+}

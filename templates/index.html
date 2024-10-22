@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hearing Aid Web Application</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Hearing Aid Application</h1>
+    <div class="control-panel">
+        <label for="amplification">Amplification Factor (1x to 10x):</label>
+        <input type="range" id="amplification" min="1" max="10" step="0.1" value="5">
+        <span id="amplificationValue">5</span>
+
+        <label for="noiseReduction">Noise Reduction (0% to 100%):</label>
+        <input type="range" id="noiseReduction" min="0" max="100" step="1" value="0">
+        <span id="noiseReductionValue">0%</span>
+
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+    </div>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
