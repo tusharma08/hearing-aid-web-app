@@ -16,6 +16,10 @@ p = None
 stream_in = None
 stream_out = None
 
+# Default values for amplification and noise reduction
+DEFAULT_AMPLIFICATION = 5.0
+DEFAULT_NOISE_REDUCTION = 0.0
+
 def initialize_pyaudio():
     global p, stream_in, stream_out
 

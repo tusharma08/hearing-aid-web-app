@@ -17,10 +17,10 @@ def bandpass_filter(data, lowcut, highcut, fs, order=5):
 
 def process_audio_data(audio_data, amplification_factor, noise_reduction_level):
     # Amplify the audio signal
-    amplified_data = audio_data * amplification_factor
+    amplified_data = audio_data.astype(np.float64) * amplification_factor
 
     # Band-pass filter for isolating speech frequencies (300Hz to 3400Hz)
-    filtered_data = bandpass_filter(amplified_data, lowcut=300, highcut=3400, fs=SAMPLE_RATE)
+    filtered_data = bandpass_filter(amplified_data, lowcut=300, highcut=3400, fs=SAMPLE_RATE, order=6)
 
     # Apply noise reduction (low-pass filter) only if noise reduction level > 0
     if noise_reduction_level > 0:
