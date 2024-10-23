@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, emit
 import numpy as np
 import pyaudio
 from threading import Thread
-from audio_processing import process_audio_data  # Import the audio processing logic
+from audio_processing import process_audio_data
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -11,10 +11,10 @@ socketio = SocketIO(app)
 SAMPLE_RATE = 44100  # Sample rate in Hz
 CHUNK = 1024         # Number of frames per buffer
 
-# Global variable for PyAudio stream
+# Global variables for PyAudio stream and processing
+p = None
 stream_in = None
 stream_out = None
-p = None
 
 def initialize_pyaudio():
     global p, stream_in, stream_out
